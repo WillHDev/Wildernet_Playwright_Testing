@@ -10,6 +10,7 @@ async function globalSetup() {
     await page.type('input[placeholder="example@email.com"]', 'honor.roll.tutor@gmail.com'); 
     await page.getByRole('button', { name: 'Continue' }).click();
     await page.type('input[placeholder="Password"]', 'Mrwhiskers1!'); 
+      await page.getByRole('button', { name: "Log in" }).click();
 
     await page.waitForLoadState('networkidle');
     //await expect(page.locator('text=" jjohnson"')).toBeVisible();
