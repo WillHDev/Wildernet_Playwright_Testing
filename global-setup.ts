@@ -1,7 +1,7 @@
 import { Browser, chromium, expect, Page } from '@playwright/test';
 
 async function globalSetup() {
-    console.log('Global Setup fired');
+    console.log('Global Setup fired ' + process.env.URL);
 
    
 
@@ -9,7 +9,8 @@ async function globalSetup() {
     const context = await browser.newContext();
     const page: Page = await context.newPage();
 
-    await page.goto('https://thewildernet.com/home');
+    //await page.goto('https://thewildernet.com/home');
+    await page.goto('https://localhost:3000/home');
     await page.getByText('Login').click();
     await page.type('input[placeholder="example@email.com"]', 'honor.roll.tutor@gmail.com'); 
     await page.getByRole('button', { name: 'Continue' }).click();
