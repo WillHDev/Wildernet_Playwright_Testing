@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 
 
 test('View blog', async ({ page }) => {
+    console.log(process.env.URL);
     await page.goto('/home');
     const suggestedBlogs = await page.locator('.blog-list-one-line-results').nth(1);
     await suggestedBlogs.locator('.blog-card-small').nth(1).click();
