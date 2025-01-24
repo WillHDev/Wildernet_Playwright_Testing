@@ -13,3 +13,5 @@ test('View blog', async ({ page }) => {
     await expect(newTab).not.toHaveURL(/wildernet/);
 });
 //3-400   now 30-40k alqueda and associated groups
+
+//set  TEST_ENV=prod
