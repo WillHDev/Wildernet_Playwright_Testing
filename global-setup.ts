@@ -1,8 +1,12 @@
-import { Browser, chromium, expect, Page } from '@playwright/test';
+import { Browser, chromium, expect, Page, FullConfig } from '@playwright/test';
 
-async function globalSetup() {
-  
-    const browser: Browser = await chromium.launch({ headless: false });
+
+
+async function globalSetup(config: FullConfig) {
+
+    if (process.env.URL === 'https://thewildernet.com') {
+      
+        const browser: Browser = await chromium.launch({ headless: false });
     const context = await browser.newContext();
     const page: Page = await context.newPage();
 
@@ -15,6 +19,19 @@ async function globalSetup() {
     await page.waitForLoadState('networkidle');
     await page.context().storageState({ path: "./LoginAuth.json" });
     await browser.close();
+        console.log('Running in production mode');
+      } else {
+        const browser: Browser = await chromium.launch({ headless: false });
+        const context = await browser.newContext();
+        const page: Page = await context.newPage();
+    
+        await page.goto('http://localhost:3000/home');
+    
+        await browser.close();
+        console.log('Running in production mode');
+      }
+  
+    
 }
 
 export default globalSetup;

@@ -1,10 +1,12 @@
 import { defineConfig, devices } from '@playwright/test';
-import dotenv from "dotenv";
+//import dotenv from "dotenv";
+
+
 
 //SUBSCRIBE
-dotenv.config({
+require('dotenv').config({ 
   path: `./env-files/.env.${process.env.TEST_ENV}`
-})
+});
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
@@ -32,12 +34,23 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
-    // baseURL: 'https://thewildernet.com/',
-    baseURL: 'https://localhost:3000/',
-    storageState: './LoginAuth.json',
+     baseURL: 'https://thewildernet.com/',
+    //baseURL: 'https://localhost:3000/',
+    //storageState: './LoginAuth.json',
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
   },
+
+
+  // use: {
+  //   baseURL: process.env.BASE_URL_DEV || 'https://default.example.com', // Default URL if env var not set
+  // },
+
+  // test('visit homepage', async ({ page }) => {
+  //   await page.goto('/'); 
+  //   // This will use the base URL set in your environment variable
+  //   expect(page.url()).toContain(process.env.BASE_URL_DEV);
+  // });
 
   /* Configure projects for major browsers */
   projects: [
